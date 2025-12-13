@@ -1,2 +1,2 @@
-pyrofork
+pyrofork==2.3.65
 tgcrypto-pyrofork

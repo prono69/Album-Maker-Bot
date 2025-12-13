@@ -1,5 +1,5 @@
 """
-Pyrogram Album Maker Bot (Fixed Version)
+Pyrogram Album Maker Bot
 
 Features:
 - Accepts photos, videos, animations, and documents (image/video mime types).
@@ -115,7 +115,7 @@ async def send_album_for_user(client: Client, user_id: int, chat_id: int):
         except Exception as e:
             logger.exception(f"Failed to send media for user {user_id}")
             try:
-                await client.send_message(chat_id, f"Failed to send media: {e}")
+                await client.send_message(chat_id, f"Failed to send media: `{e}`")
             except Exception:
                 pass
 
@@ -212,15 +212,17 @@ async def status(client: Client, message: Message):
 
 @app.on_message(filters.private & filters.command("start"))
 async def start(client: Client, message: Message):
-    await message.reply_text(
-        "👋 **Hi!**\n\n"
-        "Send me photos or videos. I will group them into an album automatically.\n\n"
-        f"• **Threshold:** {AUTO_SEND_THRESHOLD} items\n"
-        f"• **Delay:** {AUTO_SEND_DELAY} seconds\n\n"
-        "Commands:\n"
-        "/send_album - Force send now\n"
-        "/cancel - Clear queue\n"
-        "/status - Check queue"
+    # First send the photo
+    await message.reply_photo(
+        photo="https://i.ibb.co/QjdgRJG4/Neo-Matrix90.jpg",  # Replace with your image URL
+        caption="👋 **Hi!**\n\n"
+                "Send me photos or videos. I will group them into an album automatically.\n\n"
+                f"• **Threshold:** `{AUTO_SEND_THRESHOLD} items`\n"
+                f"• **Delay:** `{AUTO_SEND_DELAY} seconds`\n\n"
+                "Commands:\n"
+                "/send_album - Force send now\n"
+                "/cancel - Clear queue\n"
+                "/status - Check queue"
     )
 
 
