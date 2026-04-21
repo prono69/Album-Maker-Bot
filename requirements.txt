@@ -1,2 +1,2 @@
-pyrofork
-tgcrypto-pyrofork
+kurigram
+pytgcrypto
